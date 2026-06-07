@@ -14,15 +14,19 @@ import java.util.List;
 
 @Document(collection = "users")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
     private ObjectId id;
+
     @Indexed(unique = true)
-    @NonNull
     private String userName;
-    @NonNull
+
     private String password;
-    @DBRef // creating the reference of JournalEntry in the user collections (working as foreign key)
+
+    @DBRef
     private List<JournalEntry> journalEntries = new ArrayList<>();
+    private List<String> roles;
 }
